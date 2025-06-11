@@ -233,38 +233,50 @@ export default function(app) {
 
             // Preparar o prompt para a API do Deepseek
             const prompt = `
-                Escreva uma notícia em português com base no conteúdo a seguir, não faça parecer um plágio:
+                [C] CONTEXTO
 
-                Título original: ${tituloOriginal}
-                Conteúdo original: ${conteudoOriginal}
+                Você é um jornalista experiente e editor-chefe de um grande portal de notícias online no Brasil. Sua especialidade é transformar informações brutas e comunicados em reportagens completas, aprofundadas e otimizadas para SEO, capazes de engajar o leitor do início ao fim. Sua tarefa é usar o material original abaixo como ponto de partida para criar uma matéria jornalística completa e original.
 
-                A notícia deve ter um bom SEO e ter o tamanho suficiente para uma postagem em um portal de notícias.
-                Se houver menções a veículos de comunicação no meio da notícia, remova-as.
+                Título Original: ${tituloOriginal}
+                Conteúdo Original: ${conteudoOriginal}
+                [T] TOM E [A] AUDIÊNCIA
 
-                IMPORTANTE: O título deve ser fiel ao conteúdo da notícia, mantendo a essência e os pontos principais da história original. 
-                Evite títulos que não reflitam o conteúdo real da matéria.
-                O título deve ser atraente, mas sem exageros ou promessas que não são cumpridas no texto.
+                Tom: Adote um tom jornalístico, informativo, imparcial e profissional. A escrita deve ser envolvente e clara, utilizando uma linguagem rica para prender a atenção do leitor.
+                Audiência: O texto se destina ao público geral brasileiro, leitor de portais de notícias. A linguagem deve ser acessível, mas sem subestimar a inteligência do leitor.
+                [O] OBJETIVO
 
-                Por favor, forneça:
-                1. Um título atraente e em português que reflita fidelmente o conteúdo
-                2. O conteúdo em texto, mantendo a coerência com o título
-                3. Um resumo curto e impactante para redes sociais (máximo 200 caracteres)
-                4. Hashtags relevantes para Instagram (máximo 5 hashtags) precisa ter # no começo de cada hashtag
-                5. Um prompt detalhado para gerar uma imagem que represente a notícia (o prompt deve ser em inglês e seguir estas regras:
-                   - Não incluir nenhum texto ou palavras na imagem
-                   - Criar uma composição visual impactante e profissional
-                   - Usar cores vibrantes e contrastantes
-                   - Focar em elementos visuais que representem o tema principal
-                   - Garantir que a imagem seja adequada para notícias
-                   - Evitar elementos polêmicos ou sensíveis
-                   - Criar uma atmosfera que transmita a emoção da notícia)
+                Seu objetivo é produzir um pacote de conteúdo completo para publicação, seguindo estritamente as diretrizes abaixo:
 
-                Formato da resposta:
-                TÍTULO: [novo título]
-                CONTEÚDO: [conteúdo em texto]
-                RESUMO: [resumo curto para redes sociais]
+                Desenvolver uma Notícia Aprofundada:
+
+                Extensão: O corpo da notícia deve ter entre 1.500 e 2.000 palavras.
+                Profundidade: Não se limite a reescrever o conteúdo original. Para atingir a extensão desejada, você deve expandir e aprofundar os pontos-chave. Adicione contexto histórico, explore as implicações dos eventos, inclua dados estatísticos (podem ser hipotéticos, mas realistas, se necessário), e desenvolva os argumentos com parágrafos bem estruturados. Crie uma narrativa coesa com introdução, desenvolvimento e conclusão.
+                SEO: Otimize o texto para mecanismos de busca, utilizando palavras-chave relevantes derivadas do conteúdo original de forma natural ao longo do artigo.
+                Criar um Título Otimizado:
+
+                O título deve ser atraente, fiel ao conteúdo, e otimizado para SEO.
+                Produzir Conteúdo para Redes Sociais:
+
+                Um resumo curto e impactante (máximo 200 caracteres).
+                5 hashtags relevantes para Instagram.
+                Criar um Prompt para Imagem:
+
+                Um prompt detalhado em inglês para gerar uma imagem que represente a notícia.
+                [N] NEGATIVO (REGRAS E RESTRIÇÕES)
+
+                NÃO FAÇA PLÁGIO: A notícia final deve ser uma obra original, e não uma simples reordenação ou substituição de sinônimos do texto base.
+                REMOVA MENÇÕES: Elimine qualquer menção a outros veículos de comunicação que possa existir no conteúdo original.
+                EVITE CLICKBAIT: O título deve ser atraente, mas sem exageros, sensacionalismo ou promessas que não são cumpridas no texto.
+                REGRAS DO PROMPT DE IMAGEM: O prompt deve instruir a IA a NÃO incluir texto ou palavras na imagem, evitar elementos polêmicos e focar em uma composição profissional com cores vibrantes.
+                FORMATO OBRIGATÓRIO DA RESPOSTA
+
+                A sua resposta final deve seguir EXATAMENTE este formato, sem nenhuma informação ou texto adicional fora dele:
+
+                TÍTULO: [aqui vai o novo título]
+                CONTEÚDO: [aqui vai o conteúdo da notícia com 1.500 a 2.000 palavras]
+                RESUMO: [aqui vai o resumo curto para redes sociais]
                 HASHTAGS: #[hashtag1] #[hashtag2] #[hashtag3] #[hashtag4] #[hashtag5]
-                IMAGE_PROMPT: [prompt detalhado em inglês para gerar a imagem, seguindo as regras acima]
+                IMAGE_PROMPT: [aqui vai o prompt detalhado em inglês para gerar a imagem]
             `;
 
             // Chamar a API do Deepseek
